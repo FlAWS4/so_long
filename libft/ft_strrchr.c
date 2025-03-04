@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 14:44:38 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/04 17:25:44 by my42             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/libft.h"
+
+char	*ft_strrchr(const char *s, int c)
+{
+	const char	*p;
+
+	p = 0;
+	while (*s)
+	{
+		if ((unsigned char)*s == (unsigned char) c)
+			p = s;
+		s++;
+	}
+	if ((unsigned char)*s == (unsigned char) c)
+		return ((char *) s);
+	return ((char *) p);
+}
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main ()
+{
+	char *str = "can you find it";
+	char *res = ft_strrchr(str, ' ');
+	char *str1 = "can you find it";
+	char *res1 = strrchr(str1, ' ');
+
+	printf ("%s\n", res);
+	printf ("%s", res1);
+}
+*/
