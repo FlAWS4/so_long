@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:21 by my42              #+#    #+#             */
-/*   Updated: 2025/03/04 17:53:27 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/04 21:09:57 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "libft.h"
-# include "tiles.h"
+# include "asset.h"
 # include "keys.h"
 # include "error_messages.h"
 # include "../mlx/mlx.h"

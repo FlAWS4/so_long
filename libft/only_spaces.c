@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   only_spaces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:28:28 by my42              #+#    #+#             */
-/*   Updated: 2025/03/04 17:45:34 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/04 20:53:58 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	only_spaces(const char *str)
 	{
 		if (!is_spaces(str[i]))
 			return (false);
-		i += 1;
+		i++;
 	}
 	return (true);
 }

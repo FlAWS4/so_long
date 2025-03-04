@@ -20,7 +20,7 @@ BONUS		=	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c\
 
 BONUS_OBJS	= ${BONUS:.c=.o}
 
-CC			= gcc
+CC			= cc
 
 RM			= rm -f
 

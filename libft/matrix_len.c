@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:27:51 by my42              #+#    #+#             */
-/*   Updated: 2025/03/04 17:42:32 by my42             ###   ########.fr       */
+/*   Created: 2025/03/04 20:53:20 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/04 20:53:47 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ size_t	matrix_len(char **matrix)
 {
 	size_t	i;
 
+	i = 0;
 	if (!matrix)
 		return (0);
 	while (matrix[i])
-		i += 1;
+		i++;
 	return (i);
 }
