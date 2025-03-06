@@ -6,68 +6,35 @@
 /*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:18:41 by my42              #+#    #+#             */
-/*   Updated: 2025/03/04 17:26:38 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/05 06:30:34 by my42             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-size_t	ft_strlen_gnl(char *str)
+char	*join_free(char *s1, char *s2)
 {
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strchr_gnl(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-	{
-		free(s);
-		return (NULL);
-	}
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strjoin_gnl(char *s1, char *s2)
-{
+	size_t	len_s1;
+	size_t	len_s2;
+	char	*appended;
 	size_t	i;
 	size_t	j;
-	char	*str;
 
-	if (!s2)
-		return (free(s1), NULL);
-	if (!s1)
-	{
-		s1 = (char *)malloc(1 * sizeof(char));
-		if (!s1)
-			return (NULL);
-		s1[0] = '\0';
-	}
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (free (s1), NULL);
-	i = -1;
+	if (!s1 || !s2)
+		return (NULL);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	appended = malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	if (!appended)
+		return (NULL);
+	i = 0;
 	j = 0;
-	if (s1)
-		while (s1[++i] != '\0')
-			str[i] = s1[i];
-	while (s2[j] != '\0')
-		str[i++] = s2[j++];
-	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	return (free(s1), str);
+	while (j < len_s1)
+		appended[i++] = s1[j++];
+	j = 0;
+	while (j < len_s2)
+		appended[i++] = s2[j++];
+	appended[i] = '\0';
+	free(s1);
+	return (appended);
 }

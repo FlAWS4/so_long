@@ -6,107 +6,129 @@
 /*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:26:50 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:26:29 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/05 06:31:51 by my42             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*get_lines(char *str)
+static char	*clean_printed(char	*global_buffer)
 {
-	int		i;
-	char	*s;
+	size_t	i;
+	char	*new;
+	size_t	j;
 
 	i = 0;
-	if (!str[i])
-		return (NULL);
-	while (str[i] && str[i] != '\n')
+	while (global_buffer[i] && global_buffer[i] != '\n')
 		i++;
-	if (str[i] == '\n')
-		i++;
-	s = (char *)malloc(sizeof(char) * (i + 1));
-	if (!s || !str)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != '\n')
+	if (!global_buffer[i])
 	{
-		s[i] = str[i];
-		i++;
-	}
-	if (str[i] == '\n')
-		s[i++] = '\n';
-	s[i] = '\0';
-	return (s);
-}
-
-char	*stock(char *str)
-{
-	int		i;
-	int		j;
-	char	*s;
-
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (!str[i] || !str)
-	{
-		free(str);
+		free(global_buffer);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!s)
-		return (free(str), NULL);
+	new = malloc(((ft_strlen(global_buffer) - i) + 1) * sizeof(char));
+	if (!new)
+		return (NULL);
 	i++;
 	j = 0;
-	while (str[i])
-		s[j++] = str[i++];
-	s[j] = '\0';
-	free(str);
-	return (s);
+	while (global_buffer[i])
+		new[j++] = global_buffer[i++];
+	new[j] = '\0';
+	free(global_buffer);
+	return (new);
 }
 
-char	*read_and_append(int fd, char *str)
+static char	*get_line(char *global_buffer)
 {
-	char	*buff;
-	int		read_bytes;
+	size_t	len;
+	size_t	i;
+	char	*line;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (free(str), NULL);
-	read_bytes = 1;
-	while (!ft_strchr(str, '\n') && read_bytes != 0)
+	len = 0;
+	i = 0;
+	if (!global_buffer[i])
+		return (NULL);
+	while (global_buffer[len] && global_buffer[len] != '\n')
+		len++;
+	line = malloc((len + 2) * sizeof(char));
+	if (!line)
+		return (NULL);
+	while (i <= len)
 	{
-		read_bytes = read(fd, buff, BUFFER_SIZE);
-		if (read_bytes < 0)
+		line[i] = global_buffer[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+static char	*join_n_free(char *global_buffer, char *local_buffer)
+{
+	size_t	len_global;
+	size_t	len_local;
+	char	*appended;
+	size_t	i;
+	size_t	j;
+
+	if (!global_buffer || !local_buffer)
+		return (NULL);
+	len_global = ft_strlen(global_buffer);
+	len_local = ft_strlen(local_buffer);
+	appended = malloc((len_global + len_local + 1) * sizeof(char));
+	if (!appended)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j < len_global)
+		appended[i++] = global_buffer[j++];
+	j = 0;
+	while (j < len_local)
+		appended[i++] = local_buffer[j++];
+	appended[i] = '\0';
+	free(global_buffer);
+	return (appended);
+}
+
+static char	*read_buffsize(int fd, char *global_buffer)
+{
+	char	*buffer;
+	int		bytes_rd;
+
+	if (global_buffer == NULL)
+		global_buffer = ft_calloc(1, sizeof(char));
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	bytes_rd = 1;
+	while (bytes_rd > 0)
+	{
+		bytes_rd = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_rd == -1 || (bytes_rd == 0 && global_buffer == NULL))
 		{
-			free(str);
-			free(buff);
+			free(global_buffer);
+			free(buffer);
 			return (NULL);
 		}
-		buff[read_bytes] = '\0';
-		str = ft_strjoin(str, buff);
+		buffer[bytes_rd] = '\0';
+		global_buffer = join_n_free(global_buffer, buffer);
+		if (is_onstr(global_buffer, '\n') == true)
+			break ;
 	}
-	free(buff);
-	return (str);
+	free(buffer);
+	return (global_buffer);
 }
 
 char	*get_next_line(int fd)
 {
+	static char	*global_buffer[FOPEN_MAX];
 	char		*line;
-	static char	*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	str = read_and_append(fd, str);
-	if (!str)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	line = get_lines(str);
-	if (!line)
-	{
-		free(str);
-		str = NULL;
+	global_buffer[fd] = read_buffsize(fd, global_buffer[fd]);
+	if (!global_buffer[fd])
 		return (NULL);
-	}
-	str = stock(str);
+	line = get_line(global_buffer[fd]);
+	global_buffer[fd] = clean_printed(global_buffer[fd]);
 	return (line);
 }
