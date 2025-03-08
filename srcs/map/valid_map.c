@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:41:03 by my42              #+#    #+#             */
-/*   Updated: 2025/03/06 19:54:20 by my42             ###   ########.fr       */
+/*   Created: 2025/03/06 22:03:37 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/08 21:40:35 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/so_long.h"
 
@@ -17,11 +18,11 @@
 static void	throw_error_if(t_game *game)
 {
 	if (game->map.exit == 0 || game->map.exit > 1)
-		panic(game, INVALID_NBR_EXITS);
+		write_error(game, INVALID_NBR_EXITS);
 	if (game->map.collectibles == 0)
-		panic(game, NO_COLLECTIBLES);
+		write_error(game, NO_COLLECTIBLES);
 	if (game->map.player == 0 || game->map.player > 1)
-		panic(game, INVALID_NBR_PLAYERS);
+		write_error(game, INVALID_NBR_PLAYERS);
 }
 
 static void	check_elements(t_game *game)
@@ -36,7 +37,7 @@ static void	check_elements(t_game *game)
 		while (++j < game->map.columns)
 		{
 			if (!is_onstr(VALID_ENTITIES, game->map.map[i][j]))
-				panic(game, INVALID_ENTITY);
+				write_error(game, INVALID_ENTITY);
 			if (game->map.map[i][j] == EXIT)
 				game->map.exit += 1;
 			else if (game->map.map[i][j] == COLLECTIBLE)
@@ -85,9 +86,9 @@ static bool	valid_form(t_game *game)
 void	map_check(t_game *game)
 {
 	if (!valid_form(game))
-		panic(game, INVALID_FORMAT);
+		write_error(game, INVALID_FORMAT);
 	check_elements(game);
 	if (!is_closed(&game->map))
-		panic(game, MAP_NOT_CLOSED);
+		write_error(game, MAP_NOT_CLOSED);
 	validate_path(game);
 }

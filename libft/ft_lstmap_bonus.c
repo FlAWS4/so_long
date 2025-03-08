@@ -3,60 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:21:28 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:22:47 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/06 22:20:05 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 /*
-t_list	*ft_lstmap(t_list *lst, int *(*f)(int *), void (*del)(int *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*node;
-	t_list	*newlst;
+	t_list	*newmap;
+	t_list	*newnode;
+	t_list	*tmp;
 
-	if (!lst)
-		return (lst);
-	newlst = NULL;
-	while (lst)
+	if (!lst || !f || !del)
+		return (NULL);
+	newmap = NULL;
+	while (lst != NULL)
 	{
-		node = ft_lstnew(*f(&lst->number));
-		if (!(node))
+		tmp = f(lst->content);
+		newnode = ft_lstnew(tmp);
+		if (!newnode)
 		{
-			ft_lstclear(&newlst, (*del));
+			del(tmp);
+			ft_lstclear(&newmap, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&newlst, node);
+		ft_lstadd_back(&newmap, newnode);
 		lst = lst->next;
 	}
-	return (newlst);
+	return (newmap);
 }
 
-void	del(void *number)
+void	del(void *content)
 {
-		free(number);
+		free(content);
 }
-void	*count(void *number)
+void	*count(void *content)
 {
-	*(int *) number += 1;
-	return (number);
+	*(int *) content += 1;
+	return (content);
 }
-void	*cap(void *number)
+
+void	*cap(void *content)
 {
 	int i;
 	
 	i = 0;
-	char *str = (char *)number;
+	char *str = (char *)content;
 	while (str[i])
 	{
-		((char *) number)[i] = ft_toupper(str[i]);
+		((char *) content)[i] = ft_toupper(str[i]);
 		i++;
 	}
-	return (number);
-		
+	return (content);
 }
+
 int	main()
 {
 	int *first = malloc(sizeof(int));
@@ -80,9 +84,10 @@ int	main()
 	t_list  *tmp = newmap;
 	while(newmap)
 	{
-		printf("%s\n", (char *)newmap->number);
+		printf("%s\n", (char *)newmap->content);
 		newmap = newmap->next;
 	}
 	ft_lstclear(&newmap, del);
 	ft_lstclear(&list, del);
-}*/
+}
+*/

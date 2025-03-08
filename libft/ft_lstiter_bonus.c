@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:11:30 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:22:29 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/06 22:26:23 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-
-void	ft_lstiter(t_list *lst, void (*f)(int *))
+/*
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!lst || !f)
 		return ;
 	while (lst != NULL)
 	{
-		f(&lst->number);
+		f(lst->content);
 		lst = lst->next;
 	}
 }
 
-void	func(void *number)
+void	func(void *content)
 {
-	*(int *)number += 1;
+	*(int *)content += 1;
 }
-/*
+
 int	main()
 {
 	int	*data1 = malloc(sizeof(int));
@@ -46,7 +46,7 @@ int	main()
 	ft_lstiter(list, func);
 	while (list)
 	{
-		printf("%d\n", *(int *)list->number);
+		printf("%d\n", *(int *)list->content);
 		list = list->next;
 	}	
 }*/

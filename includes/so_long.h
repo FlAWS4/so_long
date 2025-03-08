@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:03:21 by my42              #+#    #+#             */
-/*   Updated: 2025/03/06 01:23:09 by my42             ###   ########.fr       */
+/*   Created: 2025/03/06 22:48:34 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/08 21:49:21 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,63 +33,64 @@
 
 # define WIN_MSG "You won\n"
 
-typedef struct s_point {
+typedef struct s_point
+{
 	int	x;
 	int	y;
 }				t_point;
 
 typedef struct s_tiles
 {
-    void	*wall;
-    void	*floor;
-    void	*player;
-    void	*enemy;
-    void	*collectible;
-    void	*exit;
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*enemy;
+	void	*collectible;
+	void	*exit;
 }		t_tiles;
 
 typedef struct s_map
 {
-    char	**map;
-    int		rows;
-    int		columns;
-    int		exit;
-    int		collectibles;
-    int		player;
-    int		enemy;
-    t_point	player_pos;
-    t_point	enemy_pos;
+	char	**map;
+	int		rows;
+	int		columns;
+	int		exit;
+	int		collectibles;
+	int		player;
+	int		enemy;
+	t_point	player_pos;
+	t_point	enemy_pos;
 }		t_map;
 
 typedef struct s_game
 {
-    void	*mlx_ptr;
-    void	*win_ptr;
-    t_tiles	tiles;
-    t_map	map;
-    int		moves;
-    int		animation_frame;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_tiles	tiles;
+	t_map	map;
+	int		moves;
+	int		animation_frame;
 }		t_game;
 
 static inline t_game	init_game(void)
 {
-    return ((t_game){
-        .map.map = NULL,
-        .map.rows = 0,
-        .map.columns = 0,
-        .map.collectibles = 0,
-        .map.exit = 0,
-        .map.player = 0,
-        .map.enemy = 0,
-        .tiles.collectible = NULL,
-        .tiles.exit = NULL,
-        .tiles.floor = NULL,
-        .tiles.player = NULL,
-        .tiles.enemy = NULL,
-        .tiles.wall = NULL,
-        .moves = -1,
-        .animation_frame = 0,
-    });
+	return ((t_game){
+		.map.map = NULL,
+		.map.rows = 0,
+		.map.columns = 0,
+		.map.collectibles = 0,
+		.map.exit = 0,
+		.map.player = 0,
+		.map.enemy = 0,
+		.tiles.collectible = NULL,
+		.tiles.exit = NULL,
+		.tiles.floor = NULL,
+		.tiles.player = NULL,
+		.tiles.enemy = NULL,
+		.tiles.wall = NULL,
+		.moves = -1,
+		.animation_frame = 0,
+	});
 }
 void	get_map(char *map_file, t_game *game);
 /*	Checks if the map has a valid exit path
@@ -115,7 +116,7 @@ int		quit_game(t_game *game);
 /* UTILS */
 
 /* Calls destroy() and exits the program on FAILURE */
-void	panic(t_game *game, char *error_msg);
+void	write_error(t_game *game, char *error_msg);
 
 /* Destroys game ptr and all its inside fields */
 void	destroy(t_game *game);

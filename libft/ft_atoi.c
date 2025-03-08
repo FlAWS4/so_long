@@ -3,36 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 17:31:24 by my42              #+#    #+#             */
-/*   Updated: 2025/03/04 17:33:04 by my42             ###   ########.fr       */
+/*   Created: 2024/09/12 21:18:54 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/06 22:14:40 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-/*
-int	ft_atoi(char *str)
+int	ft_atoi(const char *nptr)
 {
 	int	i;
-	int	n;
+	int	plusminus;
+	int	result;
 
 	i = 0;
-	n = 0;
-	while (str[i])
+	plusminus = 1;
+	result = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (48 <= str[i] && str[i] <= 57)
-		{
-			n = n * 10 + str[i] - 48;
-			i++;
-		}
-		else
-		{
-			write(1, "THE PID IS INCORRECT\n", 21);
-			exit(0);
-		}
+		if (nptr[i] == '-')
+			plusminus = -1;
+		i++;
 	}
-	return (n);
+	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = (result * 10) + (nptr[i] - '0');
+		i++;
+	}
+	return (result * plusminus);
 }
-*/
+/*
+#include<stdlib.h>
+#include<stdio.h>
+
+int	main(void)
+{
+	char str[20] = "-+2avcvs234567";
+	printf("%d\n", ft_atoi(str));
+	printf("%d", atoi(str));
+}*/

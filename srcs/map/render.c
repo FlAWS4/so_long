@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:41:28 by my42              #+#    #+#             */
-/*   Updated: 2025/03/06 19:54:22 by my42             ###   ########.fr       */
+/*   Created: 2025/03/06 22:03:18 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/08 21:40:31 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/so_long.h"
 
 static void	check_error_on_xpms(t_game *game)
 {	
 	if (!game->tiles.wall)
-		panic(game, WALL_XPM_ERR);
+		write_error(game, WALL_XPM_ERR);
 	if (!game->tiles.floor)
-		panic(game, PLAYER_XPM_ERR);
+		write_error(game, PLAYER_XPM_ERR);
 	if (!game->tiles.player)
-		panic(game, PLAYER_XPM_ERR);
+		write_error(game, PLAYER_XPM_ERR);
 	if (!game->tiles.collectible)
-		panic(game, COLLECTIBLE_XPM_ERR);
+		write_error(game, COLLECTIBLE_XPM_ERR);
 	if (!game->tiles.exit)
-		panic(game, EXIT_XPM_ERR);
+		write_error(game, EXIT_XPM_ERR);
 }
 
 static void	open_xpm(t_game *game)

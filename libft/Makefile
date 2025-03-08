@@ -8,8 +8,8 @@ SRCS		=	ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c\
 				ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c\
 				ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c\
 				ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c\
-				ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstmap_bonus.c ft_strcmp.c\
-				get_next_line.c ft_write_error.c free_matrix.c trim_free.c is_onstr.c\
+				ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstmap_bonus.c \
+				get_next_line.c free_matrix.c trim_free.c is_onstr.c\
 				gnl_utils.c matrix_len.c only_spaces.c ft_atoi.c printf.c printf_utils.c\
 
 OBJS		= ${SRCS:.c=.o}

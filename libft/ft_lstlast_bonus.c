@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 12:57:21 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:22:35 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/06 22:19:09 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	while (lst != NULL)
-	{
-		if (lst->next == NULL)
-			return (lst);
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
 		lst = lst->next;
-	}
 	return (lst);
 }
 /*
@@ -34,6 +32,6 @@ int	main()
 	node->next->next->next->next = NULL;
 
 	node = ft_lstlast(node);
-	printf("%s\n", (char *)(node->number));
+	printf("%s\n", (char *)(node->content));
 }
 */

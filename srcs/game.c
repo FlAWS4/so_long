@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:44:58 by my42              #+#    #+#             */
-/*   Updated: 2025/03/06 19:56:20 by my42             ###   ########.fr       */
+/*   Created: 2025/03/06 22:00:42 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/08 22:34:20 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,27 @@ static void	update_left_behind_tile(t_game *game)
 
 void	update_player_pos(t_game *game, bool horizontal, int length)
 {
-	if (horizontal)
-	{
-		if (game->map.map[game->map.player_pos.y]
-			[game->map.player_pos.x + length] == WALL)
-			return ;
-		update_left_behind_tile(game);
-		game->map.player_pos.x += length;
-	}
-	else
-	{
-		if (game->map.map[game->map.player_pos.y + length]
-			[game->map.player_pos.x] == WALL)
-			return ;
-		update_left_behind_tile(game);
-		game->map.player_pos.y += length;
-	}
-	which_tile(game);
-	put_player_tile(game);
+    if (horizontal)
+    {
+        if (game->map.map[game->map.player_pos.y]
+            [game->map.player_pos.x + length] == WALL ||
+            (game->map.map[game->map.player_pos.y]
+            [game->map.player_pos.x + length] == EXIT && game->map.collectibles > 0))
+            return ;
+        update_left_behind_tile(game);
+        game->map.player_pos.x += length;
+    }
+    else
+    {
+        if (game->map.map[game->map.player_pos.y + length]
+            [game->map.player_pos.x] == WALL ||
+            (game->map.map[game->map.player_pos.y + length]
+            [game->map.player_pos.x] == EXIT && game->map.collectibles > 0))
+            return ;
+        update_left_behind_tile(game);
+        game->map.player_pos.y += length;
+    }
+    which_tile(game);
+    put_player_tile(game);
 }
+

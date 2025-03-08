@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 12:42:09 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:23:00 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/06 22:27:34 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-
+/*
 int	ft_lstsize(t_list *lst)
 {
 	int	i;
@@ -26,7 +26,6 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
-/*
 int	main()
 {
 	t_list	*node;

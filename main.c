@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:51:13 by my42              #+#    #+#             */
-/*   Updated: 2025/03/06 19:57:15 by my42             ###   ########.fr       */
+/*   Created: 2025/03/06 21:59:13 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/08 21:52:58 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	args_check(int argc, char **argv)
 {
 	if (argc != 2)
-		panic(NULL, INVALID_NBR_ARGS);
+		write_error(NULL, INVALID_NBR_ARGS);
 	if (*argv[1] == '\0')
-		panic(NULL, NULL_MAP);
+		write_error(NULL, NULL_MAP);
 }
 
 int	main(int argc, char **argv)

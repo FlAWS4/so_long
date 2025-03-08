@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:56:29 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:45:33 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/08 22:24:43 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 typedef struct s_list
 {
-	int				number;
+	int				content;
 	struct s_list	*next;
 }		t_list;
 
@@ -46,7 +46,6 @@ void	ft_putptr(void *ptr, size_t *counter);
 char	*ft_convertbase(size_t n, char *base);
 
 char	*get_next_line(int fd);
-void	write_error(void);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalnum(int c);

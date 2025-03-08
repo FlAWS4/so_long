@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:43:32 by my42              #+#    #+#             */
-/*   Updated: 2025/03/06 19:56:48 by my42             ###   ########.fr       */
+/*   Created: 2025/03/06 22:00:33 by mshariar          #+#    #+#             */
+/*   Updated: 2025/03/08 21:40:52 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "so_long.h"
 
@@ -45,10 +46,10 @@ void	init_mlx(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
-		panic(game, MLX_INIT_ERR);
+		write_error(game, MLX_INIT_ERR);
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			game->map.columns * TILE_SIZE, game->map.rows * TILE_SIZE,
 			"so_long");
 	if (!game->win_ptr)
-		panic(game, MLX_NEW_WINDOW_ERR);
+		write_error(game, MLX_NEW_WINDOW_ERR);
 }

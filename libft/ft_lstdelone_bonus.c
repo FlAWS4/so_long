@@ -3,31 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:50:41 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/04 17:22:22 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/06 22:25:21 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-
-void	ft_lstdelone(t_list *lst, void (*del)(int *))
-{
-	t_list	*tmp;
-
-	tmp = lst;
-	if (lst != NULL)
-	{
-		lst = tmp->next;
-		del(&tmp->number);
-		free(tmp);
-	}
-}
 /*
-void	del(void *number)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-		free(number);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
+}
+
+void	del(void *content)
+{
+		free(content);
 }
 
 int	main()
@@ -50,10 +45,10 @@ int	main()
 	ft_lstdelone(tmp, del);
 	while(node)
 	{
-		printf("%s\n", (char *)node->number);
+		printf("%s\n", (char *)node->content);
 		tmp = node;
 		node = node->next;
-		free (tmp->number);
+		free (tmp->content);
 		free(tmp);
 	}
 }*/
