@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:48:34 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/08 21:49:21 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/09 04:33:53 by my42             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ typedef struct s_tiles
 
 typedef struct s_map
 {
-	char	**map;
-	int		rows;
-	int		columns;
-	int		exit;
-	int		collectibles;
-	int		player;
-	int		enemy;
-	t_point	player_pos;
-	t_point	enemy_pos;
+    char	**map;
+    int		rows;
+    int		columns;
+    int		exit;
+    int		collectibles;
+    int		player;
+    int		enemy;	/* Total count of enemies */
+    t_point	player_pos;
+    t_point	*enemy_pos;	/* Change to pointer for array of positions */
 }		t_map;
 
 typedef struct s_game
@@ -123,8 +123,7 @@ void	destroy(t_game *game);
 
 /* Frees matrix ptr and all its inside fields */
 void	free_matrix(char **matrix);
-
-/* Animation function */
-int		animate(t_game *game);
+void	move_enemy(t_game *game);
+int		check_enemy_collision(t_game *game);
 
 #endif
