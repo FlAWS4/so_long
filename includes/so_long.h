@@ -6,7 +6,7 @@
 /*   By: my42 <my42@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:48:34 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/09 04:33:53 by my42             ###   ########.fr       */
+/*   Updated: 2025/03/10 10:21:47 by my42             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
+    int	x;
+    int	y;
 }				t_point;
 
 typedef struct s_tiles
 {
-	void	*wall;
-	void	*floor;
-	void	*player;
-	void	*enemy;
-	void	*collectible;
-	void	*exit;
+    void	*wall;
+    void	*floor;
+    void	*player;
+    void	*enemy;
+    void	*collectible;
+    void	*exit;
 }		t_tiles;
 
 typedef struct s_map
@@ -57,73 +57,76 @@ typedef struct s_map
     int		exit;
     int		collectibles;
     int		player;
-    int		enemy;	/* Total count of enemies */
+    int		enemy;
     t_point	player_pos;
-    t_point	*enemy_pos;	/* Change to pointer for array of positions */
+    t_point	*enemy_pos;
 }		t_map;
 
 typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_tiles	tiles;
-	t_map	map;
-	int		moves;
-	int		animation_frame;
+    void	*mlx_ptr;
+    void	*win_ptr;
+    t_tiles	tiles;
+    t_map	map;
+    int		moves;
+    int		animation_frame;
 }		t_game;
 
+/**
+ * Creates and initializes a new game structure with default values
+ */
 static inline t_game	init_game(void)
 {
-	return ((t_game){
-		.map.map = NULL,
-		.map.rows = 0,
-		.map.columns = 0,
-		.map.collectibles = 0,
-		.map.exit = 0,
-		.map.player = 0,
-		.map.enemy = 0,
-		.tiles.collectible = NULL,
-		.tiles.exit = NULL,
-		.tiles.floor = NULL,
-		.tiles.player = NULL,
-		.tiles.enemy = NULL,
-		.tiles.wall = NULL,
-		.moves = -1,
-		.animation_frame = 0,
-	});
+    return ((t_game){
+        .map.map = NULL,
+        .map.rows = 0,
+        .map.columns = 0,
+        .map.collectibles = 0,
+        .map.exit = 0,
+        .map.player = 0,
+        .map.enemy = 0,
+        .tiles.collectible = NULL,
+        .tiles.exit = NULL,
+        .tiles.floor = NULL,
+        .tiles.player = NULL,
+        .tiles.enemy = NULL,
+        .tiles.wall = NULL,
+        .moves = -1,
+        .animation_frame = 0,
+    });
 }
+
+/**
+ * Map loading and validation functions
+ */
 void	get_map(char *map_file, t_game *game);
-/*	Checks if the map has a valid exit path
-and if all entities are achievable */
 void	validate_path(t_game *game);
 void	map_check(t_game *game);
 
-/* Initializes mlx and win pointers*/
+/**
+ * MLX and rendering functions
+ */
 void	init_mlx(t_game *game);
-
-/* Renders the respective tiles according to the characters on the map */
 void	render_map(t_game *game);
+void	render_player_and_counter(t_game *game);
+void	render_tiles(t_game *game);
 
-void	update_player_pos(t_game *game, bool horizontal, int length);
-/* Renders player tile and moves counter */
-void	put_player_tile(t_game *game);
-void	put_enemy_tile(t_game *game);
-
-void	hook_n_run(t_game *game);
-
-int		quit_game(t_game *game);
-
-/* UTILS */
-
-/* Calls destroy() and exits the program on FAILURE */
-void	write_error(t_game *game, char *error_msg);
-
-/* Destroys game ptr and all its inside fields */
-void	destroy(t_game *game);
-
-/* Frees matrix ptr and all its inside fields */
-void	free_matrix(char **matrix);
+/**
+ * Game mechanics functions
+ */
+void	move_player(t_game *game, bool horizontal, int length);
 void	move_enemy(t_game *game);
 int		check_enemy_collision(t_game *game);
+void	setup_game_hooks(t_game *game);
+int		handle_key_press(int key, t_game *game);
+int		quit_game(t_game *game);
+
+/**
+ * Utility functions
+ */
+void	write_error(t_game *game, char *error_msg);
+void	destroy(t_game *game);
+void	free_textures(t_game *game);
+void	free_matrix(char **matrix);
 
 #endif
