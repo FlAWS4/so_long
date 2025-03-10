@@ -6,35 +6,16 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 21:53:55 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/06 21:53:56 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:40:24 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/libft.h"
 #include <stdarg.h>
 
-# define HEX_UPP_BASE "0123456789ABCDEF"
-# define HEX_LOW_BASE "0123456789abcdef"
+#define HEX_UPP_BASE "0123456789ABCDEF"
+#define HEX_LOW_BASE "0123456789abcdef"
 
-void	ft_putuint(unsigned int num, size_t *return_val)
-{
-	char	*str;
-
-	str = ft_convertbase(num, "0123456789");
-	ft_putstr(str, return_val);
-	free(str);
-}
-
-
-void	ft_puthex(unsigned int num, size_t *return_val, char *base)
-{
-	char	*str;
-
-	str = ft_convertbase(num, base);
-	ft_putstr(str, return_val);
-	free(str);
-}
 void	ft_putptr(void *ptr, size_t *return_val)
 {
 	char			*str;
@@ -51,7 +32,6 @@ void	ft_putptr(void *ptr, size_t *return_val)
 	ft_putstr(str, return_val);
 	free(str);
 }
-
 
 void	ft_putnbr(int n, size_t *return_val)
 {

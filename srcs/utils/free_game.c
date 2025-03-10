@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_matrix.c                                      :+:      :+:    :+:   */
+/*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:14:03 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/06 22:14:06 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:37:03 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/libft.h"
 
-void	free_matrix(char **matrix)
+void	free_game(char **matrix)
 {
 	size_t	i;
 
@@ -24,7 +23,7 @@ void	free_matrix(char **matrix)
 	{
 		free(matrix[i]);
 		matrix[i] = NULL;
-		i += 1;
+		i++;
 	}
 	if (i > 0)
 		free(matrix);

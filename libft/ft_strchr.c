@@ -6,7 +6,7 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:07:10 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/06 22:22:10 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:32:54 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strchr(const char *s, int c)
 			return (NULL);
 		s++;
 	}
-	return (char *)(s);
+	return ((char *)(s));
 }
 
 /*

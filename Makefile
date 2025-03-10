@@ -7,7 +7,7 @@ VPATH = srcs srcs/map srcs/utils
 RM = rm -rf
 NAME = so_long
 
-UTILS = destroy write_error
+UTILS = destroy write_error free_game
 MAP = valid_path get_map valid_map render
 GENERAL = game key_hooks
 

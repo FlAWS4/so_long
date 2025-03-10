@@ -6,11 +6,9 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:04:28 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/06 22:04:29 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:40:13 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../includes/libft.h"
 
@@ -65,4 +63,22 @@ char	*ft_convertbase(size_t n, char *base)
 		n /= nb;
 	}
 	return (str);
+}
+
+void	ft_putuint(unsigned int num, size_t *return_val)
+{
+	char	*str;
+
+	str = ft_convertbase(num, "0123456789");
+	ft_putstr(str, return_val);
+	free(str);
+}
+
+void	ft_puthex(unsigned int num, size_t *return_val, char *base)
+{
+	char	*str;
+
+	str = ft_convertbase(num, base);
+	ft_putstr(str, return_val);
+	free(str);
 }

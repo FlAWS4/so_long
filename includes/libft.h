@@ -6,7 +6,7 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:56:29 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/08 22:24:43 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:36:48 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ size_t	ft_strlen_gnl(char *str);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 char	*trim_free(char *s1, char const *set);
-void	free_matrix(char **matrix);
 size_t	matrix_len(char **matrix);
 bool	only_spaces(const char *str);
 bool	is_onstr(const char *str, int ch);

@@ -6,11 +6,9 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:04:15 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/06 22:04:16 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:37:26 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../includes/libft.h"
 
@@ -43,7 +41,7 @@ char	*trim_free(char *s1, char const *set)
 		return (NULL);
 	beg = 0;
 	while (s1[beg] != '\0' && ft_strchr(set, s1[beg]) != NULL)
-		beg += 1;
+		beg++;
 	end = ft_strlen(s1 + beg);
 	while (end > beg && ft_strchr(set, s1[(beg + end) - 1]) != NULL)
 		end -= 1;
