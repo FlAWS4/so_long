@@ -47,3 +47,5 @@ re: fclean all
 run: all clean
 
 .SILENT:
+
+.PHONY: all clean fclean re run
