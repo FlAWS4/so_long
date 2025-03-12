@@ -6,7 +6,7 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:03:01 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 13:50:32 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:43:46 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	read_map_lines(char *map_file, t_game *game)
 	i = 0;
 	while (i < (game->map.rows - 1))
 	{
-		game->map.map[i] = trim_free(game->map.map[i], "\n");
+		game->map.map[i] = ft_strtrim(game->map.map[i], "\n");
 		if (!game->map.map[i])
 			write_error(game, MALLOC_ERR);
 		i++;
@@ -80,9 +80,6 @@ static void	read_map_lines(char *map_file, t_game *game)
 	game->map.columns = ft_strlen(game->map.map[0]);
 }
 
-/**
- * Loads the map from file into the game structure
- */
 void	get_map(char *map_file, t_game *game)
 {
 	if (!is_valid_extension(map_file))

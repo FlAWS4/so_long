@@ -6,18 +6,12 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:00:59 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 14:36:10 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:40:06 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-/**
- * Safely destroys all loaded game textures
- * Prevents memory leaks from texture resources
- * 
- * @param game Pointer to the game structure
- */
 void	free_textures(t_game *game)
 {
 	if (game->tiles.wall)
@@ -32,12 +26,6 @@ void	free_textures(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->tiles.exit);
 }
 
-/**
- * Cleans up all allocated resources for the game
- * Destroys images, window, display and frees memory
- * 
- * @param game Pointer to the game structure
- */
 void	destroy(t_game *game)
 {
 	if (!game)

@@ -6,18 +6,12 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:00:42 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 15:16:22 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:40:51 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/**
- * Renders the player sprite and updates move counter
- * Displays move counter in a visible location on screen
- *
- * @param game Pointer to the game structure
- */
 void	render_player_and_counter(t_game *game)
 {
 	char	*moves_str;
@@ -45,12 +39,6 @@ void	render_player_and_counter(t_game *game)
 	free(display);
 }
 
-/**
- * Processes player interactions with special tiles (collectibles, exit)
- * Updates game state based on tile type at player's position
- * 
- * @param game Pointer to the game structure
- */
 static void	process_tile_interaction(t_game *game)
 {
 	if (game->map.map[game->map.player_pos.y]
@@ -69,12 +57,6 @@ static void	process_tile_interaction(t_game *game)
 	}
 }
 
-/**
- * Renders the appropriate tile at player's previous position
- * Prevents player sprite from leaving a trail when moving
- *
- * @param game Pointer to the game structure
- */
 static void	render_previous_position(t_game *game)
 {
 	if (game->map.map[game->map.player_pos.y]
@@ -92,14 +74,6 @@ static void	render_previous_position(t_game *game)
 			TILE_SIZE * game->map.player_pos.y);
 }
 
-/**
- * Updates player position and handles movement constraints
- * Prevents movement into walls or locked exits
- *
- * @param game Pointer to the game structure
- * @param horizontal True if movement is horizontal, false if vertical
- * @param length Distance to move (-1 or 1)
- */
 void	move_player(t_game *game, bool horizontal, int length)
 {
 	if (horizontal)

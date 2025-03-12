@@ -6,19 +6,12 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 21:59:13 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 14:30:42 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:41:33 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/**
- * Validates command line arguments for proper format
- * Ensures a valid map file is provided
- *
- * @param argc Argument count from command line
- * @param argv Argument values from command line
- */
 static void	validate_arguments(int argc, char **argv)
 {
 	if (argc != 2)
@@ -27,14 +20,6 @@ static void	validate_arguments(int argc, char **argv)
 		write_error(NULL, NULL_MAP);
 }
 
-/**
- * Main entry point for the game
- * Initializes game components, loads map, and starts game loop
- *
- * @param argc Argument count from command line
- * @param argv Argument values from command line
- * @return EXIT_SUCCESS if game terminates properly
- */
 int	main(int argc, char **argv)
 {
 	t_game	game;

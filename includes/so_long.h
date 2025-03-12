@@ -6,7 +6,7 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:48:34 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 14:55:40 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/12 01:00:07 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ typedef struct s_game
 	int		animation_frame;
 }			t_game;
 
-/**
- * Creates and initializes a new game structure with default values
- */
 static inline t_game	init_game(void)
 {
 	return ((t_game){
@@ -96,24 +93,15 @@ static inline t_game	init_game(void)
 	});
 }
 
-/**
- * Map loading and validation functions
- */
 void	get_map(char *map_file, t_game *game);
 void	validate_path(t_game *game);
 void	map_check(t_game *game);
 
-/**
- * MLX and rendering functions
- */
 void	init_mlx(t_game *game);
 void	render_map(t_game *game);
 void	render_player_and_counter(t_game *game);
 void	render_tiles(t_game *game);
 
-/**
- * Game mechanics functions
- */
 void	move_player(t_game *game, bool horizontal, int length);
 void	move_enemy(t_game *game);
 int		check_enemy_collision(t_game *game);
@@ -121,9 +109,6 @@ void	setup_game_hooks(t_game *game);
 int		handle_key_press(int key, t_game *game);
 int		quit_game(t_game *game);
 
-/**
- * Utility functions
- */
 void	write_error(t_game *game, char *error_msg);
 void	destroy(t_game *game);
 void	free_textures(t_game *game);

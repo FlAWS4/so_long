@@ -9,7 +9,7 @@ SRCS		=	ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c\
 				ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c\
 				ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c\
 				ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstmap_bonus.c \
-				get_next_line.c trim_free.c is_onstr.c\
+				get_next_line.c is_onstr.c\
 				gnl_utils.c only_spaces.c ft_atoi.c printf.c printf_utils.c\
 
 OBJS		= ${SRCS:.c=.o}

@@ -6,18 +6,12 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:03:18 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 14:01:20 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:39:10 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-/**
- * Validates that all game textures were loaded correctly
- * Exits with an error if any texture failed to load
- *
- * @param game Pointer to the game structure
- */
 static void	validate_textures(t_game *game)
 {
 	if (!game->tiles.wall)
@@ -32,12 +26,6 @@ static void	validate_textures(t_game *game)
 		write_error(game, EXIT_XPM_ERR);
 }
 
-/**
- * Loads all required XPM textures for game elements
- * Sources images from file paths defined in asset.h
- *
- * @param game Pointer to the game structure
- */
 static void	load_textures(t_game *game)
 {
 	int	img_size;
@@ -56,12 +44,6 @@ static void	load_textures(t_game *game)
 	validate_textures(game);
 }
 
-/**
- * Places tile images into the window based on the map data
- * Renders all map elements except the player
- *
- * @param game Pointer to the game structure
- */
 void	render_tiles(t_game *game)
 {
 	int		i;
@@ -90,12 +72,6 @@ void	render_tiles(t_game *game)
 	render_player_and_counter(game);
 }
 
-/**
- * Loads textures and renders the entire game map
- * Main rendering function called during initialization
- *
- * @param game Pointer to the game structure
- */
 void	render_map(t_game *game)
 {
 	load_textures(game);

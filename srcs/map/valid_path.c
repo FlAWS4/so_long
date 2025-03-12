@@ -6,28 +6,12 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:03:50 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 14:36:15 by mshariar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   valid_path.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 22:03:50 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/09 21:24:27 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:38:11 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-/**
- * Creates a copy of the map for path validation
- * Used to avoid modifying the original map during flood fill
- */
 static char	**create_map_copy(t_game *game)
 {
 	int		i;
@@ -50,10 +34,6 @@ static char	**create_map_copy(t_game *game)
 	return (grid);
 }
 
-/**
- * Modified flood fill algorithm that treats EXIT as a wall
- * This ensures collectibles aren't placed behind exits
- */
 static void	flood_fill_collectibles(char **grid, int x,
 		int y, int *collect_count)
 {
@@ -69,9 +49,6 @@ static void	flood_fill_collectibles(char **grid, int x,
 	flood_fill_collectibles(grid, x, y - 1, collect_count);
 }
 
-/**
- * Regular flood fill to check if exit is reachable
- */
 static bool	check_exit_reachable(char **grid, int x, int y)
 {
 	static bool	exit_found = false;
@@ -89,10 +66,6 @@ static bool	check_exit_reachable(char **grid, int x, int y)
 	return (exit_found);
 }
 
-/**
- * Validates that there exists a valid path from the player's position
- * to all collectibles and the exit
- */
 void	validate_path(t_game *game)
 {
 	char	**grid1;

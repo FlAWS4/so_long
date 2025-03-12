@@ -6,7 +6,7 @@
 /*   By: mshariar <mshariar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:03:37 by mshariar          #+#    #+#             */
-/*   Updated: 2025/03/10 14:05:09 by mshariar         ###   ########.fr       */
+/*   Updated: 2025/03/11 23:38:46 by mshariar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 #define VALID_ENTITIES "ECP01"
 
-/**
- * Validates the count of required map elements
- * Exits with error if requirements not met
- */
 static void	validate_entity_counts(t_game *game)
 {
 	if (game->map.exit == 0 || game->map.exit > 1)
@@ -28,10 +24,6 @@ static void	validate_entity_counts(t_game *game)
 		write_error(game, INVALID_NBR_PLAYERS);
 }
 
-/**
- * Counts and validates all map elements
- * Records player position and element counts
- */
 static void	count_map_elements(t_game *game)
 {
 	int	i;
@@ -59,9 +51,6 @@ static void	count_map_elements(t_game *game)
 	validate_entity_counts(game);
 }
 
-/**
- * Checks if the map is completely surrounded by walls
- */
 static bool	is_map_surrounded(t_map *map)
 {
 	int	i;
@@ -77,9 +66,6 @@ static bool	is_map_surrounded(t_map *map)
 	return (true);
 }
 
-/**
- * Verifies that the map has a rectangular shape
- */
 static bool	is_map_rectangular(t_game *game)
 {
 	size_t	len;
@@ -96,10 +82,6 @@ static bool	is_map_rectangular(t_game *game)
 	return (true);
 }
 
-/**
- * Main map validation function
- * Checks shape, elements, walls, and valid path
- */
 void	map_check(t_game *game)
 {
 	if (!is_map_rectangular(game))
